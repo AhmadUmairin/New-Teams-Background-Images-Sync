@@ -37,6 +37,8 @@ $Files | Select-Object -ExpandProperty Name | Out-File -FilePath (Join-Path -Pat
 # Rename .png files with GUID_thumb and copy to $NewTeamsUploadDir as this is the requirement for the images to show up in New Teams
 # Get .png files in $SourceDir
 $PNGFiles = Get-ChildItem -Path $ImageSourceDir -Filter "*.png" -File
+
+#Removing the existing images to keep both directories synced instead of adding up images
 Remove-Item -Path "$NewTeamsUploadDir\*.png" -Force
 # Rename .png files with GUID_thumb and copy to $NewTeamsUploadDir
 $PNGFiles | ForEach-Object {
